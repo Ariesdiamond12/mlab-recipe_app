@@ -1,3 +1,56 @@
 {
-  "recipes": []
+  "recipe": [],
+  "user": [
+    {
+      "id": "cb5b",
+      "name": "a",
+      "surname": "b",
+      "email": "c@K.M",
+      "password": "123"
+    },
+    {
+      "id": "e58b",
+      "username": "c@K.M",
+      "password": "123"
+    },
+    {
+      "id": "e262",
+      "name": "tumi",
+      "surname": "hamilton",
+      "email": "hamilton@outlook.com",
+      "password": "12345"
+    },
+    {
+      "id": "c774",
+      "username": "hamilton@outlook.com",
+      "password": "12345"
+    },
+    {
+      "id": "b656",
+      "username": "hamilton@outlook.com",
+      "password": "12345"
+    },
+    {
+      "id": "3b68",
+      "name": "lethabo",
+      "surname": "mothapo",
+      "email": "lethabo@spacex.com",
+      "password": "aaaa"
+    },
+    {
+      "id": "45e7",
+      "username": "lethabo@spacex.com",
+      "password": "aaaa"
+    },
+    {
+      "id": "45d4",
+      "username": "lethabo@spacex.com",
+      "password": "aaaa"
+    },
+    {
+      "id": "cda0",
+      "username": "lethabo@spacex.com",
+      "password": "aaaa"
+    }
+  ]
 }

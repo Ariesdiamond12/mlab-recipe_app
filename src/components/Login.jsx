@@ -12,7 +12,7 @@ function Login() {
     e.preventDefault();
     try {
       // Simulate API call to authenticate user
-      const response = await fetch("/api/authenticate", {
+      const response = await fetch("http://localhost:3000/user", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
