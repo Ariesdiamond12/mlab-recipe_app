@@ -1,0 +1,75 @@
+import React, { useState } from "react";
+import Food from "../assets/food.jpg";
+import Burgers from "../assets/burger.jpg";
+import Pancakes from "../assets/pancakes.jpg";
+import Gourmet from "../assets/gourmet.jpg";
+
+function Home() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const foodItems = [
+      { name: "Burgers", description: "American dish", image: Burgers },
+      { name: "Pancakes", description: "British dish", image: Pancakes },
+      { name: "Gourmet", description: "Mexican dish", image: Gourmet },
+      // Add more food items here...
+    ];
+
+    const filteredResults = foodItems.filter((item) => {
+      return item.name.toLowerCase().includes(searchQuery.toLowerCase());
+    });
+
+    setSearchResults(filteredResults);
+  };
+
+  return (
+    <div>
+      <div className="relative">
+        <div
+          className="h-screen md:h-90 xl:h-64 bg-cover bg-zinc-900/90 bg-center"
+          style={{ backgroundImage: `url(${Food})` }}
+        >
+          <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white !important  text-3xl text-center">
+            Welcome to Foodie Heaven!
+          </h1>
+        </div>
+        <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-0 overlay"></div>
+      </div>
+      <div className="text-4xl text-white">Home</div>
+      <form onSubmit={handleSearch} className="flex justify-center mt-10">
+        <input
+          className="w-80 my-4 py-4 rounded-lg"
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search..."
+        />
+        <button
+          className="w-36 my-4 py-4 rounded-full bg-[#A10702] text-white ml-4"
+          type="submit"
+        >
+          Search
+        </button>
+      </form>
+      <div className="flex flex-wrap justify-center mt-10">
+        {searchResults.map((result, index) => (
+          <div key={index} className="w-64 m-4 bg-white rounded-lg shadow-md">
+            <img
+              src={result.image}
+              alt={result.name}
+              className="w-full h-40 object-cover rounded-t-lg"
+            />
+            <div className="p-4">
+              <h2 className="text-lg font-bold">{result.name}</h2>
+              <p className="text-gray-600">{result.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default Home;
