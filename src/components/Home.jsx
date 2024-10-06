@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import Food from "../assets/food.jpg";
 import Burgers from "../assets/burger.jpg";
 import Pancakes from "../assets/pancakes.jpg";
@@ -22,17 +21,20 @@ function Home() {
     { name: "Pancakes", description: "British dish", image: Pancakes },
     { name: "Gourmet", description: "Mexican dish", image: Gourmet },
     { name: "Mushroom Soup", description: "French dish", image: Mushrooms },
-    { name: "Salmon Fish", description: "Seaford", image: Salmon },
+    { name: "Salmon Fish", description: "Seafood", image: Salmon },
     { name: "Blueberry muffins", description: "Baked Goods", image: Cookies },
-    { name: " Dessert", description: "Dessert", image: Dessert },
+    { name: "Dessert", description: "Dessert", image: Dessert },
     { name: "Spring Rolls", description: "Chinese dish", image: Roll },
     { name: "Banana Dessert", description: "Dessert", image: Banana },
     { name: "Cocktails, Mocktails", description: "Drinks", image: Mocktail },
     { name: "Breakfast Sandwich", description: "Sandwich", image: Sandwich },
-    // Add more food items here...
   ]);
+
+  // Load recipes from localStorage
   useEffect(() => {
-    setSearchResults(foodItems);
+    const storedRecipes = JSON.parse(localStorage.getItem("recipes")) || [];
+    setFoodItems([...foodItems, ...storedRecipes]);
+    setSearchResults([...foodItems, ...storedRecipes]);
   }, []);
 
   const handleSearch = (e) => {
@@ -42,31 +44,7 @@ function Home() {
       return item.name.toLowerCase().includes(searchQuery.toLowerCase());
     });
 
-    if (e.target.value === "") setSearchResults(foodItems);
-    else setSearchResults(filteredResults);
-  };
-
-  const handleCreate = (newItem) => {
-    setFoodItems([...foodItems, newItem]);
-    setSearchResults([...searchResults, newItem]);
-  };
-
-  const handleUpdate = (updatedItem) => {
-    const index = foodItems.findIndex((item) => item.id === updatedItem.id);
-    if (index !== -1) {
-      foodItems[index] = updatedItem;
-      setFoodItems([...foodItems]);
-      setSearchResults([...searchResults]);
-    }
-  };
-
-  const handleDelete = (id) => {
-    const index = foodItems.findIndex((item) => item.id === id);
-    if (index !== -1) {
-      foodItems.splice(index, 1);
-      setFoodItems([...foodItems]);
-      setSearchResults([...searchResults]);
-    }
+    setSearchResults(filteredResults);
   };
 
   return (
@@ -82,9 +60,7 @@ function Home() {
             Welcome to Foodie Heaven!
           </h1>
         </div>
-        {/* <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-0 overlay"></div> */}
       </div>
-      <div className="text-4xl text-white">Home</div>
 
       <form onSubmit={handleSearch} className="flex justify-center mt-10">
         <input
@@ -99,14 +75,6 @@ function Home() {
           type="submit"
         >
           Search
-        </button>
-        <button
-          className="w-36 my-4 py-4 rounded-full bg-[#A10702] shadow-md text-white ml-4"
-          onClick={() => {
-            window.location.href = "/add-recipe";
-          }}
-        >
-          Add
         </button>
       </form>
 

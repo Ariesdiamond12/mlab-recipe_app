@@ -12,6 +12,7 @@ function Login() {
     e.preventDefault();
     try {
       // Simulate API call to authenticate user
+      // The username and password will be sent to the POST request
       const response = await fetch("http://localhost:3000/user", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -20,7 +21,7 @@ function Login() {
 
       if (response.ok) {
         const userData = await response.json();
-        // Store user data in local storage
+        // If the server responds successfully the user data will be returned from the server and is going to be stored in the 
         localStorage.setItem("userData", JSON.stringify(userData));
         navigate("/home");
       } else {
