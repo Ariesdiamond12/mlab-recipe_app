@@ -83,14 +83,11 @@ function AddRecipe() {
             </div>
             <div className="flex flex-col py-2">
               <label>Category</label>
-              <select className="flex flex-col py-2">
-                <option>
-                  <option value="Breakfast">Breakfast</option>
-                  <option value="Lunch">Lunch</option>
-                  <option value="Dinner">Dinner</option>
-                  <option value="Dessert">Dessert</option>
-                  <option value="Snack">Snack</option>
-                </option>
+              <select className="border p-2 rounded-lg">
+                <option></option>
+                <option value="breakfast">Breakfast</option>
+                <option value="lunch">Lunch</option>
+                <option value="dinner">Dinner</option>
               </select>
             </div>
             <div className="flex flex-col py-2">
