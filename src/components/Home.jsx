@@ -11,6 +11,7 @@ import Roll from "../assets/springroll.jpg";
 import Banana from "../assets/bananas.jpg";
 import Mocktail from "../assets/mocktail.jpg";
 import Sandwich from "../assets/sandwich.jpg";
+import { Navigate } from "react-router-dom";
 
 function Home() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -75,6 +76,13 @@ function Home() {
           type="submit"
         >
           Search
+        </button>
+        <button
+          className="w-36 my-4 py-4 rounded-full bg-[#A10702] shadow-md text-white ml-4"
+          type="submit"
+          onClick={() => (location.href = "/add-recipe")}
+        >
+          Add
         </button>
       </form>
 
