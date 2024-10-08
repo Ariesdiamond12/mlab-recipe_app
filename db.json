@@ -1,5 +1,22 @@
 {
-  "recipe": [],
+  "recipe": [
+    {
+      "id": "3c4f",
+      "title": "Kota",
+      "category": "burger",
+      "ingredients": [
+        "Bread",
+        "Chips",
+        "Atchaar",
+        "Polony",
+        "Cheese"
+      ],
+      "instructions": "Put all the ingridients in the bread",
+      "preparationTime": "10 minutes",
+      "cookingTime": "20 minutes",
+      "servings": "1"
+    }
+  ],
   "user": [
     {
       "id": "cb5b",
@@ -187,6 +204,23 @@
       "id": "238d",
       "username": "lethabo@spacex.com",
       "password": "aaaa"
+    },
+    {
+      "id": "38ab",
+      "name": "tumi",
+      "surname": "mothapo",
+      "email": "tumi@icloud.co.za",
+      "password": "12345678"
+    },
+    {
+      "id": "21b6",
+      "username": "tumi@icloud.co.za",
+      "password": "12345678"
+    },
+    {
+      "id": "66df",
+      "username": "tumi@icloud.co.za",
+      "password": "12345678"
     }
   ]
 }

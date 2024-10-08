@@ -50,7 +50,7 @@ function Home() {
 
   return (
     <div>
-      <div className="relative">
+      <div className= "relative">
         <div
           className="h-screen md:h-90 xl:h-64 bg-cover bg-zinc-900/90 bg-center"
           style={{

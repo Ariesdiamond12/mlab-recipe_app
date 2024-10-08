@@ -5,15 +5,15 @@ function AddRecipe() {
   const [recipeName, setRecipeName] = useState("");
   const [category, setCategory] = useState("");
   const [ingredients, setIngredients] = useState("");
-  const [instructions, setIntructions] = useState();
+  const [instructions, setInstructions] = useState("");
   const [preparationTime, setPreparationTime] = useState("");
   const [cookingTime, setCookingTime] = useState("");
   const [servings, setServings] = useState("");
+  const [error, setError] = useState("");
 
   const handleAddRecipe = (e) => {
     e.preventDefault();
 
-    // Create a new recipe object
     const newRecipe = {
       title: recipeName,
       category: category,
@@ -24,11 +24,10 @@ function AddRecipe() {
       servings: servings,
     };
 
-    // You can add validation here to ensure all fields are filled in
     if (
       !newRecipe.title ||
       !newRecipe.category ||
-      !newRecipe.ingredients ||
+      !newRecipe.ingredients.length ||
       !newRecipe.instructions ||
       !newRecipe.preparationTime ||
       !newRecipe.cookingTime ||
@@ -38,9 +37,7 @@ function AddRecipe() {
       return;
     }
 
-    // Add the new recipe to your database or API
-    // For example, using a fake API:
-    fetch("/api/recipes", {
+    fetch("http://localhost:3000/recipe", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newRecipe),
@@ -48,19 +45,30 @@ function AddRecipe() {
       .then((response) => response.json())
       .then((data) => {
         console.log("Recipe added successfully!", data);
-        // You could also redirect the user to a new page or update the UI here
+        setRecipeName("");
+        setCategory("");
+        setIngredients("");
+        setInstructions("");
+        setPreparationTime("");
+        setCookingTime("");
+        setServings("");
+        setError("");
       })
       .catch((error) => {
         console.error("Error adding recipe:", error);
         setError("Error adding recipe. Please try again.");
       });
   };
+
   return (
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 h-screen w-full overflow-hidden">
         {/* Left Column */}
         <div className="flex flex-col justify-center">
-          <form className="max-w-[400px] w-full mx-auto p-4">
+          <form
+            className="max-w-[400px] w-full mx-auto p-4"
+            onSubmit={handleAddRecipe}
+          >
             <h1 className="text-3xl font-normal text-center">
               Create your own recipes
             </h1>
@@ -74,19 +82,22 @@ function AddRecipe() {
               />
             </div>
             <div className="flex flex-col py-2">
-              <label> Category</label>
+              <label>Category</label>
+              <select className="flex flex-col py-2">
+                <option>
+                  <option value="Breakfast">Breakfast</option>
+                  <option value="Lunch">Lunch</option>
+                  <option value="Dinner">Dinner</option>
+                  <option value="Dessert">Dessert</option>
+                  <option value="Snack">Snack</option>
+                </option>
+              </select>
+            </div>
+            <div className="flex flex-col py-2">
+              <label>Ingredients (comma separated)</label>
               <input
                 className="border p-2 rounded-lg"
                 type="text"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              />
-            </div>
-            <div className="flex flex-col py-2">
-              <label>Ingredients</label>
-              <input
-                className="border p-2 rounded-lg"
-                type="password"
                 value={ingredients}
                 onChange={(e) => setIngredients(e.target.value)}
               />
@@ -95,9 +106,9 @@ function AddRecipe() {
               <label>Instructions</label>
               <input
                 className="border p-2 rounded-lg"
-                type="password"
+                type="text"
                 value={instructions}
-                onChange={(e) => setIntructions(e.target.value)}
+                onChange={(e) => setInstructions(e.target.value)}
               />
             </div>
             <div className="flex flex-col py-2">
@@ -127,10 +138,10 @@ function AddRecipe() {
                 onChange={(e) => setServings(e.target.value)}
               />
             </div>
-            {/* {error && <div className="text-red-500">{error}</div>} */}
+            {error && <div className="text-red-500">{error}</div>}
             <button
               className="w-full my-4 py-4 rounded-full bg-[#A10702] shadow-lg shadow-[#A10702] text-white"
-              onClick={handleAddRecipe}
+              type="submit"
             >
               Add Recipe
             </button>
