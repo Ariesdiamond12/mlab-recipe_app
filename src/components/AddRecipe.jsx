@@ -154,7 +154,7 @@ function AddRecipe() {
                 <option value="Dessert">Dessert</option>
                 <option value="Lunch">Lunch</option>
                 <option value="Dinner">Dinner</option>
-                <option value="Baking">Baking</option>
+                <option value="Baking">Baking and Pastry</option>
                 <option value="Appetizer">Appetizer</option>
                 <option value="Beverages">Beverages</option>
                 <option value="Seafood">Seafood</option>

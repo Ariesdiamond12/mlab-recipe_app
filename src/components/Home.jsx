@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Food from "../assets/food.jpg";
+import RecipeModal from "./RecipeModal";
 
 function Home() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -26,6 +27,22 @@ function Home() {
       item.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setSearchResults(filteredResults);
+  };
+
+  const deleteRecipe = async (id) => {
+    try {
+      // Sending DELETE request to delete the recipe by ID
+      await fetch(`http://localhost:3000/recipe/${id}`, {
+        method: "DELETE",
+      });
+
+      // Update the local state to remove the deleted recipe
+      const updatedFoodItems = foodItems.filter((recipe) => recipe.id !== id);
+      setFoodItems(updatedFoodItems);
+      setSearchResults(updatedFoodItems); // Update search results as well
+    } catch (error) {
+      console.error("Failed to delete recipe:", error);
+    }
   };
 
   return (
@@ -79,6 +96,7 @@ function Home() {
                 <h2 className="text-lg font-bold">{result.title}</h2>
                 <p className="text-gray-600">{result.description}</p>
               </div>
+              <RecipeModal result={result} onDelete={deleteRecipe} />
             </div>
           ))
         ) : (
