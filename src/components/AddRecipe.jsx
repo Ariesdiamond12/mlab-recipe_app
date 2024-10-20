@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Book from "../assets/book.jpg";
-import { useParams, useNavigate } from "react-router-dom"; // For handling routing
+import { useParams, useNavigate } from "react-router-dom";
 
 function AddRecipe() {
-  const { id } = useParams(); // Get recipe ID from URL, if editing
-  const navigate = useNavigate(); // For navigation after edit or add
+  const { id } = useParams();
+  const navigate = useNavigate();
   const [recipeName, setRecipeName] = useState("");
   const [category, setCategory] = useState("");
   const [ingredients, setIngredients] = useState("");
@@ -14,7 +14,7 @@ function AddRecipe() {
   const [servings, setServings] = useState("");
   const [image, setImage] = useState("");
   const [error, setError] = useState("");
-  const [isEditMode, setIsEditMode] = useState(false); // Track if it's edit mode
+  const [isEditMode, setIsEditMode] = useState(false);
 
   useEffect(() => {
     // If there is an ID, fetch the recipe data to edit
@@ -30,7 +30,7 @@ function AddRecipe() {
           setCookingTime(data.cookingTime);
           setServings(data.servings);
           setImage(data.image);
-          setIsEditMode(true); // We are in edit mode now
+          setIsEditMode(true);
         })
         .catch((error) => console.error("Error fetching recipe:", error));
     }
@@ -91,7 +91,6 @@ function AddRecipe() {
         data
       );
 
-      // Clear form fields and navigate to home
       setRecipeName("");
       setCategory("");
       setIngredients("");
@@ -101,7 +100,7 @@ function AddRecipe() {
       setServings("");
       setImage("");
       setError("");
-      navigate("/"); // Navigate back to the home page
+      navigate("/home");
     } catch (error) {
       console.error(
         `Error ${isEditMode ? "updating" : "adding"} recipe:`,

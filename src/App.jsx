@@ -14,6 +14,7 @@ function App() {
         <Route path="/registration" element={<Registration />} />
         <Route path="/home" element={<Home />} />
         <Route path="/add-recipe" element={<AddRecipe />} />
+        <Route path="/add-recipe/:id" element={<AddRecipe />} />{" "}
       </Routes>
     </BrowserRouter>
   );

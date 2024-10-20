@@ -6,6 +6,7 @@ function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [foodItems, setFoodItems] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   // Fetch recipes from the server
   useEffect(() => {
@@ -13,7 +14,7 @@ function Home() {
       .then((response) => response.json())
       .then((data) => {
         setFoodItems(data);
-        setSearchResults(data); // By default, display all recipes
+        setSearchResults(data);
       })
       .catch((error) => {
         console.error("Error fetching recipes:", error);
@@ -23,9 +24,17 @@ function Home() {
   const handleSearch = (e) => {
     e.preventDefault();
 
-    const filteredResults = foodItems.filter((item) =>
-      item.title.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    // Filter based on both title search and category selection
+    const filteredResults = foodItems.filter((item) => {
+      const matchesTitle = item.title
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase());
+      const matchesCategory = selectedCategory
+        ? item.category === selectedCategory
+        : true;
+      return matchesTitle && matchesCategory;
+    });
+
     setSearchResults(filteredResults);
   };
 
@@ -39,7 +48,7 @@ function Home() {
       // Update the local state to remove the deleted recipe
       const updatedFoodItems = foodItems.filter((recipe) => recipe.id !== id);
       setFoodItems(updatedFoodItems);
-      setSearchResults(updatedFoodItems); // Update search results as well
+      setSearchResults(updatedFoodItems);
     } catch (error) {
       console.error("Failed to delete recipe:", error);
     }
@@ -68,6 +77,23 @@ function Home() {
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search..."
         />
+
+        <select
+          className="w-80 m-4 p-4 rounded-2xl shadow-lg"
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+        >
+          <option value="">All Categories</option>
+          <option value="Breakfast">Breakfast</option>
+          <option value="Dessert">Dessert</option>
+          <option value="Lunch">Lunch</option>
+          <option value="Dinner">Dinner</option>
+          <option value="Baking">Baking and Pastry</option>
+          <option value="Appetizer">Appetizer</option>
+          <option value="Beverages">Beverages</option>
+          <option value="Seafood">Seafood</option>
+        </select>
+
         <button
           className="w-36 my-4 py-4 rounded-full bg-[#A10702] shadow-md text-white ml-4"
           type="submit"

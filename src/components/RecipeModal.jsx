@@ -8,14 +8,20 @@ import {
   Button,
   useDisclosure,
 } from "@nextui-org/react";
+import { useNavigate } from "react-router-dom";
 
 function RecipeModal({ result, onDelete }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const navigate = useNavigate();
 
   const handleDelete = () => {
-    // Call the onDelete function passed as a prop with the recipe's ID
-    onDelete(result.id); // Assuming result has an 'id' property to identify the recipe
-    onOpenChange(false); // Close the modal after deletion
+    onDelete(result.id);
+    onOpenChange(false);
+  };
+
+  const handleEdit = () => {
+    navigate(`/add-recipe/${result.id}`);
+    onOpenChange(false);
   };
 
   return (
@@ -40,7 +46,7 @@ function RecipeModal({ result, onDelete }) {
                   className="max-w-full h-auto"
                 />
                 <label className="text-black">Ingredients</label>
-                <p className="text-gray-600">{result.ingredients}</p>
+                <p className="text-gray-600">{result.ingredients.join(", ")}</p>
                 <label className="text-black">Instructions</label>
                 <p className="text-gray-600">{result.instructions}</p>
                 <label className="text-black">Preparation Time</label>
@@ -51,6 +57,10 @@ function RecipeModal({ result, onDelete }) {
                 <p className="text-gray-600">{result.servings}</p>
               </ModalBody>
               <ModalFooter>
+                <Button color="primary" variant="light" onPress={handleEdit}>
+                  Edit
+                </Button>
+
                 <Button color="danger" variant="light" onPress={handleDelete}>
                   Delete
                 </Button>
