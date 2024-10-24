@@ -51,6 +51,9 @@ function Registration() {
               className="border p-2 rounded-lg"
               type="text"
               value={name}
+              required
+              minLength="3"
+              maxLength="8"
               onChange={(e) => setName(e.target.value)}
             />
           </div>
@@ -60,6 +63,7 @@ function Registration() {
               className="border p-2 rounded-lg"
               type="text"
               value={surname}
+              required
               onChange={(e) => setSurname(e.target.value)}
             />
           </div>
@@ -69,6 +73,7 @@ function Registration() {
               className="border p-2 rounded-lg"
               type="email"
               value={email}
+              required
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -78,12 +83,16 @@ function Registration() {
               className="border p-2 rounded-lg"
               type="password"
               value={password}
+              required
+              minLength="6"
+              maxLength="20"
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           {error && <div className="text-red-500">{error}</div>}
           <button
             className="w-full my-4 py-4 rounded-full bg-[#A10702] shadow-lg text-white"
+            type="submit"
             onClick={handleRegister}
           >
             Create Account
