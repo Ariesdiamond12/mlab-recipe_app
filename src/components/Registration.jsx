@@ -41,7 +41,10 @@ function Registration() {
 
       {/* Form container */}
       <div className="flex justify-center items-center h-full relative z-10">
-        <form className="max-w-[400px] w-full bg-white p-8 rounded-lg shadow-lg">
+        <form
+          className="max-w-[400px] w-full bg-white p-8 rounded-lg shadow-lg"
+          onSubmit={handleRegister}
+        >
           <h2 className="text-4xl font-medium text-center py-4">
             Create An Account
           </h2>
@@ -93,7 +96,6 @@ function Registration() {
           <button
             className="w-full my-4 py-4 rounded-full bg-[#A10702] shadow-lg text-white"
             type="submit"
-            onClick={handleRegister}
           >
             Create Account
           </button>

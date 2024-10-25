@@ -21,7 +21,9 @@
     {
       "title": "Cheese Burgers",
       "category": "Appetizer",
-      "ingredients": ["dcegvrdbhntgfn"],
+      "ingredients": [
+        "dcegvrdbhntgfn"
+      ],
       "instructions": "4r4ewgy54rhu6trjuhu",
       "preparationTime": "30 mins",
       "cookingTime": "1 hr",
@@ -138,6 +140,18 @@
       "id": "70e0",
       "username": "linda@outlook.com",
       "password": "Washington1204"
+    },
+    {
+      "id": "99ae",
+      "name": "kabelo",
+      "surname": "matlakala",
+      "email": "kaybee@icloud.com",
+      "password": "#Kabelo_Peter"
+    },
+    {
+      "id": "7637",
+      "username": "kaybee@icloud.com",
+      "password": "@Kabelo_Peter"
     }
   ]
 }
