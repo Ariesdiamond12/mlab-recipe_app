@@ -112,10 +112,11 @@ function AddRecipe() {
     }
   };
 
+  //This code or hanfleImageUpload function handles the process of uploading and converting an image file into a Base64-encoded string. 
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (file) {
-      const base64Image = await convertToBase64(file);
+      const base64Image = await convertToBase64(file); //converts the file to base64 string
       setImage(base64Image);
     }
   };
@@ -209,9 +210,9 @@ function AddRecipe() {
               <input
                 className="border p-2 rounded-lg"
                 type="file"
-                accept="image/*"
+                accept="image/*" // This code only accepts images and processes the image using the handleImageUpload function
                 onChange={handleImageUpload}
-              />
+              />  
             </div>
             {error && <div className="text-red-500">{error}</div>}
             <button

@@ -152,6 +152,35 @@
       "id": "7637",
       "username": "kaybee@icloud.com",
       "password": "@Kabelo_Peter"
+    },
+    {
+      "id": "01bb",
+      "username": "sanah.marokane@icloud.com",
+      "password": "Mokgadi1977"
+    },
+    {
+      "id": "7912",
+      "name": "Ashley",
+      "surname": "Tisdale",
+      "email": "ash@icloud.com",
+      "password": "@Ashley12345"
+    },
+    {
+      "id": "e817",
+      "username": "ash@icloud.com",
+      "password": "@Ashley12345"
+    },
+    {
+      "id": "8595",
+      "name": "Kate",
+      "surname": "Hamilton",
+      "email": "katie@gmail.com",
+      "password": "#Katie1204"
+    },
+    {
+      "id": "ab30",
+      "username": "katie@gmail.com",
+      "password": "#Katie1204"
     }
   ]
 }

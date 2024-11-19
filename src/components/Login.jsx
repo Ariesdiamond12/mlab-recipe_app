@@ -11,12 +11,10 @@ function Login() {
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
-      // Simulate API call to authenticate user
-      // The username and password will be sent to the POST request
       const response = await fetch("http://localhost:3000/user", {
-        method: "POST",
+        method: "POST", 
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ username, password }), 
       });
 
       if (response.ok) {
